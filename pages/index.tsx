@@ -20,6 +20,9 @@ export default function Home() {
   const [showTable, setShowTable] = useState(false);
     
   function handleClickButton() {
+    if(productName == '' || productQtd == '' || productPrice == '') {
+      alert('All the fields has to be filled.')
+    } else {
       const newProduct = new Product(productName, +productQtd, +productPrice);
       const allProducts = [...products, newProduct];
       setProducts(allProducts);
@@ -30,6 +33,7 @@ export default function Home() {
         setShowTable(true);
       }
       calculateValue(allProducts);
+    }
   }
 
   function calculateValue(prods) {
@@ -41,7 +45,12 @@ export default function Home() {
 
   function removeProd(i) {
     products.splice(i,1);
+    setProducts(products);
+    if(products.length == 0) {
+      setShowTable(false);
+    } else {
     calculateValue(products);
+    }
   }
 
   return (
