@@ -6,7 +6,7 @@ import Header from "../components/Header";
 import Form from "../components/Form";
 import Table from "../components/Table";
 
-import { Main } from "../components/Styleds";
+import { Body, Main } from "../components/Styleds";
 
 export default function Home() {
 
@@ -54,14 +54,16 @@ export default function Home() {
   }
 
   return (
-     <Main>
-        <Header />
-        <Form
-          productName={productName} productQtd={productQtd} productPrice={productPrice}
-          setProductName={setProductName} setProductQtd={setProductQtd} setProductPrice={setProductPrice}
-          handleClickButton={handleClickButton}
-          />
-        { showTable ? <Table products={products} totalValue={totalValue} removeProd={removeProd} /> : false }
-      </Main>  
+     <Body>
+       <Main>
+          <Header />
+          <Form
+            productName={productName} productQtd={productQtd} productPrice={productPrice}
+            setProductName={setProductName} setProductQtd={setProductQtd} setProductPrice={setProductPrice}
+            handleClickButton={handleClickButton}
+            />
+          { showTable ? <Table products={products} totalValue={totalValue} removeProd={removeProd} /> : false }
+        </Main>
+     </Body>  
   )
 }

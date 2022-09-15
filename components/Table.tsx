@@ -1,11 +1,11 @@
-import { Div, Th, Td } from "./Styleds";
+import { Div, TableMain, Th, Td } from "./Styleds";
 import { BsTrashFill } from 'react-icons/bs';
 
 
 export default function Table(props) {
     return (
         <Div>
-            <table style={{ borderCollapse: 'collapse' }}>
+            <TableMain style={{ borderCollapse: 'collapse'}}>
                 <thead>
                     <tr>
                         <Th>Products</Th>
@@ -24,11 +24,11 @@ export default function Table(props) {
                             </tr>
                         ))}
                         <tr>
-                            <Td colSpan={3} style={{ backgroundColor: '#d0d0d0' }}><strong>Total</strong></Td>
-                            <Td style={{ backgroundColor: '#d0d0d0' }}><strong>R${props.totalValue}</strong></Td>
+                            <Td colSpan={3} style={{ backgroundColor: '#346770' }}><strong>Total</strong></Td>
+                            <Td style={{ backgroundColor: '#346770' }}><strong>R${props.totalValue}</strong></Td>
                         </tr>
                 </tbody>
-            </table>
+            </TableMain>
         </Div>
     )
 }
