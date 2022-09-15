@@ -55,6 +55,7 @@ export default function Home() {
 
   return (
      <Body>
+      <title>Market List</title>
        <Main>
           <Header />
           <Form
