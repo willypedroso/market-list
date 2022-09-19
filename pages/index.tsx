@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import Product from "../components/core/Product";
 
@@ -18,6 +18,8 @@ export default function Home() {
   const [totalValue, setTotalValue] = useState(0);
 
   const [showTable, setShowTable] = useState(false);
+
+  const prodInput = useRef<HTMLInputElement>(null)
     
   function handleClickButton() {
     if(productName == '' || productQtd == '' || productPrice == '') {
@@ -53,6 +55,13 @@ export default function Home() {
     }
   }
 
+  function keyHandler (e) {
+    if(e.key == 'Enter') {
+        handleClickButton();
+        prodInput?.current.focus();
+    }
+  }
+
   return (
      <Body>
       <title>Market List</title>
@@ -61,7 +70,7 @@ export default function Home() {
           <Form
             productName={productName} productQtd={productQtd} productPrice={productPrice}
             setProductName={setProductName} setProductQtd={setProductQtd} setProductPrice={setProductPrice}
-            handleClickButton={handleClickButton}
+            handleClickButton={handleClickButton} prodInput={prodInput} keyHandler={keyHandler}
             />
           { showTable ? <Table products={products} totalValue={totalValue} removeProd={removeProd} /> : false }
         </Main>
