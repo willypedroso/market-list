@@ -11,15 +11,15 @@ export default function Table(props) {
                         <Th>Products</Th>
                         <Th>Qtd</Th>
                         <Th>Prices</Th>
-                        <Th>Action</Th>
+                        <Th>Delete</Th>
                     </tr>
                 </thead>
                 <tbody>
                     {props.products.map((prod, i) => (
                             <tr key={i}>
-                                <Td>{prod.name}</Td>
+                                <Td>{prod.name.charAt(0).toUpperCase() + prod.name.slice(1)}</Td>
                                 <Td>{prod.qtd}</Td>
-                                <Td>R${prod.price}</Td>
+                                <Td>R${prod.price.toFixed(2)}</Td>
                                 <Td style={{ textAlign: 'center' }}><button onClick={() => props.removeProd(i)} style={{ paddingTop: '5px' }}><BsTrashFill/></button></Td>
                             </tr>
                         ))}

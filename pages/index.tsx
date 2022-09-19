@@ -35,8 +35,8 @@ export default function Home() {
         setShowTable(true);
       }
       calculateValue(allProducts);
-      prodInput?.current.focus();
     }
+    prodInput?.current.focus();
   }
 
   function calculateValue(prods) {
@@ -54,6 +54,7 @@ export default function Home() {
     } else {
     calculateValue(products);
     }
+    prodInput?.current.focus();
   }
 
   function keyHandler (e) {
