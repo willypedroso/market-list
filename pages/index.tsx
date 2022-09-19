@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import Product from "../components/core/Product";
 
@@ -62,6 +62,12 @@ export default function Home() {
     }
   }
 
+  useEffect(() => {
+    if(prodInput.current) {
+      prodInput.current.focus();
+    }
+  }, [])
+
   return (
      <Body>
       <title>Market List</title>
@@ -71,7 +77,7 @@ export default function Home() {
             productName={productName} productQtd={productQtd} productPrice={productPrice}
             setProductName={setProductName} setProductQtd={setProductQtd} setProductPrice={setProductPrice}
             handleClickButton={handleClickButton} prodInput={prodInput} keyHandler={keyHandler}
-            />
+          />
           { showTable ? <Table products={products} totalValue={totalValue} removeProd={removeProd} /> : false }
         </Main>
      </Body>  
