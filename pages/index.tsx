@@ -35,6 +35,7 @@ export default function Home() {
         setShowTable(true);
       }
       calculateValue(allProducts);
+      prodInput?.current.focus();
     }
   }
 
@@ -58,7 +59,6 @@ export default function Home() {
   function keyHandler (e) {
     if(e.key == 'Enter') {
         handleClickButton();
-        prodInput?.current.focus();
     }
   }
 
