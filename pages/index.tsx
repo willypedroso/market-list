@@ -35,6 +35,7 @@ export default function Home() {
         setShowTable(true);
       }
       calculateValue(allProducts);
+      populateStorage(products, totalValue);
     }
     prodInput?.current.focus();
   }
@@ -52,9 +53,10 @@ export default function Home() {
     if(products.length == 0) {
       setShowTable(false);
     } else {
-    calculateValue(products);
+      calculateValue(products);
     }
     prodInput?.current.focus();
+    populateStorage(products, totalValue);
   }
 
   function keyHandler (e) {
@@ -63,9 +65,25 @@ export default function Home() {
     }
   }
 
+  function populateStorage(prods, tValue) {
+    localStorage.clear()
+    localStorage.setItem('products', JSON.stringify(prods));
+    localStorage.setItem('totalValue', JSON.stringify(tValue));
+  }
+
   useEffect(() => {
     if(prodInput.current) {
       prodInput.current.focus();
+    }
+    let storageProds = JSON.parse(localStorage.getItem('products'));
+    let storageTotalValue = JSON.parse(localStorage.getItem('totalValue'));
+    if(storageProds != null) {
+      setProducts(storageProds);
+      setTotalValue(storageTotalValue);
+      setShowTable(true);
+    }
+    if (storageProds.length == 0) {
+      setShowTable(false);
     }
   }, [])
 
