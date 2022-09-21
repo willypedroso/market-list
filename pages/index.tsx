@@ -79,7 +79,7 @@ export default function Home() {
     if(prodInput.current) {
       prodInput.current.focus();
     }
-    let storageProds = JSON.parse(localStorage.getItem('products'));
+    let storageProds = JSON.parse(localStorage.getItem('products')) || [];
     let storageTotalValue = JSON.parse(localStorage.getItem('totalValue'));
     if(storageProds != null) {
       setProducts(storageProds);
