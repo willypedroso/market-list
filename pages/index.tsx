@@ -19,12 +19,15 @@ export default function Home() {
 
   const [showTable, setShowTable] = useState(false);
 
+  const [firstBtnClick, setFirstBtnClick] = useState(false); // just check if button click once
+
   const prodInput = useRef<HTMLInputElement>(null)
     
   function handleClickButton() {
     if(productName == '' || productQtd == '' || productPrice == '') {
       alert('All the fields has to be filled.')
     } else {
+      setFirstBtnClick(true);
       const newProduct = new Product(productName, +productQtd, +productPrice);
       const allProducts = [...products, newProduct];
       setProducts(allProducts);
@@ -35,7 +38,7 @@ export default function Home() {
         setShowTable(true);
       }
       calculateValue(allProducts);
-      populateStorage(products, totalValue);
+      /* populateStorage(products, totalValue); */
     }
     prodInput?.current.focus();
   }
@@ -48,6 +51,7 @@ export default function Home() {
   }
 
   function removeProd(i) {
+    setFirstBtnClick(true);
     products.splice(i,1);
     setProducts(products);
     if(products.length == 0) {
@@ -56,7 +60,7 @@ export default function Home() {
       calculateValue(products);
     }
     prodInput?.current.focus();
-    populateStorage(products, totalValue);
+    /* populateStorage(products, totalValue); */
   }
 
   function keyHandler (e) {
@@ -65,11 +69,19 @@ export default function Home() {
     }
   }
 
-  function populateStorage(prods, tValue) {
+  /* function populateStorage(prods, tValue) {
     localStorage.clear()
     localStorage.setItem('products', JSON.stringify(prods));
     localStorage.setItem('totalValue', JSON.stringify(tValue));
-  }
+  } */
+
+  useEffect(() => {
+    if (firstBtnClick){
+    localStorage.clear()
+    localStorage.setItem('products', JSON.stringify(products));
+    localStorage.setItem('totalValue', JSON.stringify(totalValue));
+    setFirstBtnClick(false);
+  }}, [firstBtnClick])
 
   useEffect(() => {
     if(prodInput.current) {
