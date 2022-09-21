@@ -19,7 +19,7 @@ export default function Home() {
 
   const [showTable, setShowTable] = useState(false);
 
-  const [firstBtnClick, setFirstBtnClick] = useState(false); // just check if button click once
+  const [firstBtnClick, setFirstBtnClick] = useState(false); // just check if a button was click once
 
   const prodInput = useRef<HTMLInputElement>(null)
     
@@ -38,7 +38,6 @@ export default function Home() {
         setShowTable(true);
       }
       calculateValue(allProducts);
-      /* populateStorage(products, totalValue); */
     }
     prodInput?.current.focus();
   }
@@ -60,7 +59,6 @@ export default function Home() {
       calculateValue(products);
     }
     prodInput?.current.focus();
-    /* populateStorage(products, totalValue); */
   }
 
   function keyHandler (e) {
@@ -68,12 +66,6 @@ export default function Home() {
         handleClickButton();
     }
   }
-
-  /* function populateStorage(prods, tValue) {
-    localStorage.clear()
-    localStorage.setItem('products', JSON.stringify(prods));
-    localStorage.setItem('totalValue', JSON.stringify(tValue));
-  } */
 
   useEffect(() => {
     if (firstBtnClick){
