@@ -17,9 +17,9 @@ export default function Table(props) {
                 <tbody>
                     {props.products.map((prod, i) => (
                             <tr key={i}>
-                                <Td>{prod.name.charAt(0).toUpperCase() + prod.name.slice(1)}</Td>
-                                <Td>{prod.qtd}</Td>
-                                <Td>R${prod.price.toFixed(2)}</Td>
+                                <Td>{prod.name}</Td>
+                                <Td><input style={{ width: "40px" }} type="number" value={prod.qtd} onChange={e => props.handleQtdChange(i, +e.target.value)} /></Td>
+                                <Td>R$<input style={{ width: "60px" }} type="number" value={prod.price.toFixed(2)} onChange={e => props.handlePriceChange(i, +e.target.value)} /></Td>
                                 <Td style={{ textAlign: 'center' }}><button onClick={() => props.removeProd(i)} style={{ paddingTop: '5px' }}><BsTrashFill/></button></Td>
                             </tr>
                         ))}

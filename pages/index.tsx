@@ -28,7 +28,7 @@ export default function Home() {
       alert('All the fields has to be filled.')
     } else {
       setFirstBtnClick(true);
-      const newProduct = new Product(productName, +productQtd, +productPrice);
+      const newProduct = new Product(productName.charAt(0).toUpperCase() + productName.slice(1), +productQtd, +productPrice);
       const allProducts = [...products, newProduct];
       setProducts(allProducts);
       setProductName('');
@@ -67,6 +67,20 @@ export default function Home() {
     }
   }
 
+  function handleQtdChange(i, e) {
+    products[i].qtd = e;
+    setProducts(products);
+    calculateValue(products);
+    setFirstBtnClick(true);
+  }
+  
+  function handlePriceChange(i, e) {
+    products[i].price = e;
+    setProducts(products);
+    calculateValue(products);
+    setFirstBtnClick(true);
+  }
+
   useEffect(() => {
     if (firstBtnClick){
     localStorage.clear()
@@ -101,7 +115,7 @@ export default function Home() {
             setProductName={setProductName} setProductQtd={setProductQtd} setProductPrice={setProductPrice}
             handleClickButton={handleClickButton} prodInput={prodInput} keyHandler={keyHandler}
           />
-          { showTable ? <Table products={products} totalValue={totalValue} removeProd={removeProd} /> : false }
+          { showTable ? <Table products={products} totalValue={totalValue} removeProd={removeProd} handleQtdChange={handleQtdChange} handlePriceChange={handlePriceChange} /> : false }
         </Main>
      </Body>  
   )
