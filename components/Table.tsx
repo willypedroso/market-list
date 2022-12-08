@@ -27,7 +27,7 @@ export default function Table(props) {
                         ))}
                         <tr>
                             <Td colSpan={3} style={{ backgroundColor: '#346770' }}><strong>Total</strong></Td>
-                            <Td style={{ backgroundColor: '#346770' }}><strong>R${props.totalValue}</strong></Td>
+                            <Td colSpan={2} style={{ backgroundColor: '#346770' }}><strong>R${props.totalValue}</strong></Td>
                         </tr>
                 </tbody>
             </TableMain>
