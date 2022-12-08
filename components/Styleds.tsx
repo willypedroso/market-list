@@ -63,6 +63,7 @@ const Td = styled.td`
   border: 2px black solid;
   padding: 10px;
   background-color: #B8EAF2;
+  text-align: center;
 `;
 
 export {

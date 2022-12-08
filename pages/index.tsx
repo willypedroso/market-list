@@ -28,7 +28,7 @@ export default function Home() {
       alert('All the fields has to be filled.')
     } else {
       setFirstBtnClick(true);
-      const newProduct = new Product(productName.charAt(0).toUpperCase() + productName.slice(1), +productQtd, +productPrice);
+      const newProduct = new Product(productName.charAt(0).toUpperCase() + productName.slice(1), +productQtd, +productPrice, false);
       const allProducts = [...products, newProduct];
       setProducts(allProducts);
       setProductName('');
@@ -47,6 +47,13 @@ export default function Home() {
       .reduce((a,b) => a+b).toFixed(2);
     
     setTotalValue(value);
+  }
+
+  function checkProd(i){
+    setFirstBtnClick(true);
+    products[i].checked == false ?
+    products[i].checked = true : products[i].checked = false;
+    console.log(products)
   }
 
   function removeProd(i) {
@@ -115,7 +122,7 @@ export default function Home() {
             setProductName={setProductName} setProductQtd={setProductQtd} setProductPrice={setProductPrice}
             handleClickButton={handleClickButton} prodInput={prodInput} keyHandler={keyHandler}
           />
-          { showTable ? <Table products={products} totalValue={totalValue} removeProd={removeProd} handleQtdChange={handleQtdChange} handlePriceChange={handlePriceChange} /> : false }
+          { showTable ? <Table products={products} totalValue={totalValue} checkProd={checkProd} removeProd={removeProd} handleQtdChange={handleQtdChange} handlePriceChange={handlePriceChange} /> : false }
         </Main>
      </Body>  
   )
